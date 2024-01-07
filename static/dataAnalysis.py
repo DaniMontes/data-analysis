@@ -1,100 +1,37 @@
-import os
-import numpy as np
-import json
-import csv
+#from IPython.display import display
+import pandas as pd
 
-# get the current working directory
-current_working_directory = os.getcwd()
+pd.set_option('display.max_columns', None)
+pd.set_option('display.max_rows', None)
 
-csv_file = csv.writer(open('/workspaces/data-analysis/static/csvfile.csv', 'w'))
-csv_header_list = []
+# csv file reading
+df = pd.read_csv('/workspaces/data-analysis/static/csv_file.csv')
 
-artist_header_list = []
-artist_row_list = []
-album_header_list = []
+# exploring data
 
-header = 0
+# identifying columns
+print(df.head())
 
-with open('/workspaces/data-analysis/static/taylor_swift_spotify.json', "r") as json_file:
-    json_data = json.load(json_file)
+# columns description
+# print(df.info())
 
-# Dictionary
-for artist_key, artist_value in json_data.items():
+# summary statistics
+# print(df.describe())
 
-    # List
-    if artist_key == 'albums':    
-        # print('Amount of albums: ', len(artist_value))   
+# checking artist 
+# print(df['artist_name'].value_counts())
 
-        for album in artist_value:  
+# checking album names
+# print(df['album_name'].value_counts())
 
-            album_row_list = []  
-                       
-            for album_key, album_value in album.items():
+# identifying album without name
+#df_album_name = df[df['album_name']==""]
 
-                if album_key == 'tracks': 
-                      
-                    # print('Amount of tracks: ', len(album_value))
-                   
+# identifying album name with null value
+#df_album_name = df[df['album_name'].isnull()]
 
-                    for track in album_value: 
-                        
-                        csv_row_list = []
+# checking the number of tracks per album
+#df_group = df.groupby(['album_name','album_total_tracks'])['track_name'].count()
 
-                        for track_key, track_value in track.items():
+#print(df_group)
 
-                            if track_key == 'audio_features': 
-                                
-                                audio_features_header_list = []
-                                audio_features_row_list = []
-
-                                for audio_key, audio_value in track_value.items():
-                                    
-                                    if header == 0:
-                                        audio_features_header_list.append('audio_features.'+ audio_key)  
-                                        
-                                    audio_features_row_list.append(audio_value)                                                      
-                                    # print(track_value['energy'])
-
-                            else:
-
-                                if header == 0:
-                                    csv_header_list.append(track_key)
-
-                                csv_row_list.append(track_value)  
-
-                        #csv_header_list = csv_header_list + audio_features_header_list  
-                        # csv_row_list = csv_row_list + audio_features_row_list + artist_row_list + album_row_list
-                        if header == 0:
-                            csv_file.writerow(csv_header_list + audio_features_header_list + artist_header_list + album_header_list)
-
-                        csv_file.writerow(csv_row_list + audio_features_row_list + artist_row_list + album_row_list)
-                        header = 1 
-
-                else: #if album_key == 'album_total_tracks':
-
-                    if header == 0:
-                        album_header_list.append(album_key) 
-
-                    album_row_list.append(album_value) 
-                    # print('album_total_tracks: ', album_value)
-
-    else:
-
-        if header == 0:
-            artist_header_list.append(artist_key) 
-
-        artist_row_list.append(artist_value)         
-        # print(artist_value)
-    
-
-# print(artist_header_list)
-# print(album_header_list)
-
-# csv_header_list = csv_header_list + artist_header_list + album_header_list
-
-
-# print(csv_header_list)
-
-# csv_file.writerow(csv_header_list)
-
-    
