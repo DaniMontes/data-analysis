@@ -1,9 +1,32 @@
 <html>
     <head>
-        <title>VS Code Rocks!</title>
+        <title>Data Quality Engineer - Technical Test (R5) </title>
     </head>
     <body>
-        <h1>VS Code can do that?</h1>
-        <p>Yes it can!</p>
+        <h1>Challenge: Spotify API</h1>
+
+        <p><h2>JSON to CSV</h2></p>
+        
+        <form action="/upload" method="POST" enctype="multipart/form-data">
+            <input type="file" name="file">
+            <input type="submit" value="Transform">
+            {% if msg %}
+            <p><h3>Result = {{msg}}</h3></p>
+            {% endif %}
+        </form>
+
+        <form action="/download" method="POST">    
+            <input type="Submit" class="download_file" name="download_file" id="download_file" value="Download CSV file">
+        </form>
+   
+        <!--
+        <form action="/analysis" method="POST">    
+            <input type="Submit" class="data_submit" name="data_analysis" id="data_analysis" value="Data Analysis">
+            {% for table in list_tables %}
+                <h2>{{titles[loop.index]}}</h2>
+                    {{ table|safe }}
+            {% endfor %}
+        </form>
+        -->
     </body>
 </html>
