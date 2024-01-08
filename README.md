@@ -5,6 +5,7 @@
 ### Introduction
 
 
-A Python project was created in GitHub Codespaces and Visual Studio Code web client adding and modifying a predefined DevContainer configuration with Dockerfile.
+A Python project was created in GitHub Codespaces and Visual Studio Code web client adding and modifying a predefined DevContainer configuration with Dockerfile. Python 3 was used as programming language with the following libraries/frameworks: Panda, Json, and Flask.
 
-The JSON file extracted of Spotify API (taylor_swift_spotify.json) was processed using Python 3 as the programming language, and Panda / Json libraries; the Python script is named dataTransformation.py. After normalization of the data according to the given structure, the CSV file (csv_file.csv) is generated and saved inside of the “Static” folder of the project. The Python script for data exploration is named dataAnalysis.py and its result is displayed in a HTML page (index.html) and executed a Flask APP (app.py).
+The JSON file extracted from the Spotify API (taylor_swift_spotify.json) is loaded and processed through a web application (app.py and dataTransformation.py), which also allows downloading the generated CSV file on the server. The Python script for data exploration is called “dataAnalysis.py”, which must be executed in a Python terminal to view the results of the functions, which are detailed in the following report with its respective screenshot.
+
